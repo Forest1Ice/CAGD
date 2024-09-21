@@ -1,0 +1,108 @@
+\documentclass[utf8]{ctexart}
+
+\usepackage[a4paper,left=1.25in,right=1.25in,top=1in,bottom=1in]{geometry}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{newclude}
+\usepackage[perpage]{footmisc}
+
+\graphicspath{ {images/} }
+%\raggedbottom	% 令页面在垂直方向向顶部对齐
+\renewcommand\qedsymbol{QED}
+\newcommand{\sign}[1]{\mathrm{sgn}(#1)}
+\everymath{\displaystyle}   % 行内公式采用行间公式格式排列
+\pagestyle{plain}
+
+\title{《计算机辅助几何设计》第四次作业}
+\author{姓名：殷文良\qquad 学号：12435063}
+\date{\today}
+
+\begin{document}
+\maketitle
+\ctexset { section = { format={\Large \bfseries } } }
+
+\section*{思考题1}
+\subsection*{1.}
+\begin{itemize}
+    \item a.
+    \begin{proof}
+        由于$C_n^i = C_{n-1}^i + C_{n-1}^{i-1}$，因此
+        \begin{equation*}
+            M_{i,n}(t) = C_n^it^i
+            = (C_{n-1}^i + C_{n-1}^{i-1})t^i
+            = M_{i,n-1}(t) + tM_{i-1,n-1}(t).
+        \end{equation*}
+    \end{proof}
+    \item b.
+    \begin{algorithm}
+        \caption{类 de Casteljau算法}
+        \label{alg1}
+        \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+        \renewcommand{\algorithmicensure}{\textbf{Output:}}
+        \begin{algorithmic}[1]
+            \REQUIRE $c_i,i=0,1,\dots,n,\quad t\in[0,1]$
+            \ENSURE $c_0^n$
+
+            \FOR{$i=0,1,\dots,n$}
+            \STATE $c_i^0=c_i$
+            \ENDFOR
+            \FOR{$k=1,2,\dots,n$}
+            \FOR{$i=0,1,\dots,n-k$}
+            \STATE $c_i^k = c_{i}^{k-1} + tc_{i+1}^{k-1}$
+            \ENDFOR
+            \ENDFOR
+
+            \RETURN $c_0^n$
+        \end{algorithmic}
+    \end{algorithm}
+\end{itemize}
+
+\subsection*{2.}
+\begin{proof}
+    令
+    \begin{equation*}
+        B_{i,n}'(t) = C_n^i(1-t)^{n-i-1}t^{i-1}(i-nt) = 0,
+    \end{equation*}
+    可得$t=\frac{i}{n}$，因此$B_{i,n}(t)$在$t=\frac{i}{n}$处达到极值，并且该极值是最大值。
+\end{proof}
+
+\subsection*{3.}
+\begin{proof}
+    设随机变量$\xi$服从二项分布，即
+$$
+\xi\sim B(n,t).
+$$
+则其分布列为
+$$
+P(\xi = i) = B_{i,n}(t),\quad i = 0,1,\dots,n.
+$$
+于是，$\xi$的期望为
+$$
+E\xi = \sum_{i=0}^niB_{i,n}(t).
+$$
+根据二项分布对参数$n$的可加性，以及两点分布$\eta$的期望为$t$，可知
+$$
+E\xi = nE\eta = nt.
+$$
+因此，我们有
+$$
+\sum_{i=0}^niB_{i,n}(t) = nt.
+$$
+\end{proof}
+
+\section*{思考题2}
+
+
+\end{document}
