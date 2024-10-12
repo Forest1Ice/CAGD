@@ -3,6 +3,7 @@
 \usepackage[a4paper,left=1.25in,right=1.25in,top=1in,bottom=1in]{geometry}
 \usepackage{listings}
 \usepackage{graphicx}
+\usepackage{caption}
 \usepackage{subfigure}
 \usepackage{booktabs}
 \usepackage{amsmath}
@@ -103,6 +104,86 @@ $$
 \end{proof}
 
 \section*{思考题2}
+\subsection*{1.}
+\begin{proof}
+    % 设Bézier 曲线的次数为$n$。\par
+    % 若$n=1$，此时Bézier 曲线是一条线段，控制多边形的弦长等于曲线弧长。\par
+    % 若$n\geq 2$，由Bézier曲线升阶的收敛性定理可知，控制多边形的弦长收敛于Bézier 曲线的弧长。
+    % 由于升阶是一个割角过程，所以控制多边形的弦长不断减小，因此控制多边形的弦长大于曲线弧长。\par
+    % 综上，Bézier 曲线的弧长总是小于或等于其控制多边形的边长。
+    $$
+    \begin{aligned}
+        \int_0^1\|P'(t)\|dt &= n\int_0^1\|\sum_{i=0}^{n-1}B_{i,n-1}(t)(P_{i+1}-P_i)\|dt\\
+        &\leq n\int_0^1\sum_{i=0}^{n-1}\|B_{i,n-1}(t)(P_{i+1}-P_i)\| dt\\
+        &= n\sum_{i=0}^{n-1}\|P_{i+1}-P_i\|\int_0^1B_{i,n-1}(t)dt\\
+        &= \sum_{i=0}^{n-1}\|P_{i+1}-P_i\|.
+    \end{aligned}
+    $$
+\end{proof}
+
+\subsection*{2.}
+\begin{proof}
+    \begin{itemize}
+        \item %a 
+        由升阶公式可知，$Q_{i} = \frac{i}{n+1}P_{i-1} + (1-\frac{i}{n+1})P_i,i=0,1,\dots,n+1$，其中$P_{-1}=P_{n+1}=0$。于是，$\forall i = 1,\dots,n-1$，
+        $$
+        \begin{aligned}
+        \|Q_{i+1} - Q_i\| &= \|\frac{i+1}{n+1}P_i + (1-\frac{i+1}{n+1})P_{i+1} - \frac{i}{n+1}P_{i-1} - (1-\frac{i}{n+1})P_{i}\|\\
+        &= \|\frac{i}{n+1}(P_i-P_{i-1}) + (1-\frac{i+1}{n+1})(P_{i+1}-P_i)\|\\
+        &\leq \frac{i}{n+1}\|P_i-P_{i-1}\| + (1-\frac{i+1}{n+1})\|P_{i+1}-P_i\|\\
+        &\leq \frac{i}{n+1} s_{\max}(P) + (1-\frac{i+1}{n+1})s_{\max}(P)\\
+        &= \frac{n}{n+1} s_{\max}(P).
+        \end{aligned}
+        $$
+        当$i=0$时，
+        $$
+        \|Q_1-Q_0\| = \|\frac{1}{n+1}P_0  + (1-\frac{1}{n+1})P_1 - P_0\| = \|\frac{n}{n+1}(P_1 - P_0)\| \leq \frac{n}{n+1}s_{\max}(P).
+        $$
+        类似地，当$i=n$时，$\|Q_{n+1}-Q_n\| \leq \frac{n}{n+1}s_{\max}(P)$.\\
+        综上，$s_{\max}(Q)\leq \frac{n}{n+1}s_{\max}(P)$。
+        \item %b
+        由$a$的结论可知，升阶$r$次后控制多边形最长边
+        $$
+        s_{\max}(P_r) \leq (\frac{n}{n+1})^r s_{\max}(P) \to 0, \quad r \to \infty.
+        $$
+    \end{itemize}
+\end{proof}
+
+\section*{思考题 3}
+
+
+\section*{思考题 4}
+\subsection*{1.}
+\begin{itemize}
+    \item 2维：$p_0 = (-1,0)',
+    p_1 = (0,1)',
+    p_2 = (0,-1)',
+    p_3 = (1,0)',
+    p_4 = (3,3)',
+    p_5 = (-2,1)'.$
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{bezier_2d.png}
+        \label{fig1}
+        \caption*{2维Bézier曲线}
+    \end{figure}
+
+    \item 3维：$p_0 = (-1,0,0)',
+    p_1 = (0,2,1)',
+    p_2 = (0,-1,0)',
+    p_3 = (1,0,2)',
+    p_4 = (2,2,3)',
+    p_5 = (2,3,-1)'.$
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{bezier_3d.png}
+        \label{fig2}
+        \caption{3维Bézier曲线}
+    \end{figure}
+\end{itemize}
+
+\subsection*{2.}
 
 
 \end{document}

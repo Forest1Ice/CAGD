@@ -1,2 +1,2 @@
 # CAGD
-Homework for ZJU graduate course "Computer Aided Geometric Design"
+Homework and Lectures for ZJU graduate course "Computer Aided Geometric Design"

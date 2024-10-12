@@ -7,5 +7,10 @@ hw4: hw4.pdf
 	@echo "hw4 is up to date."
 
 clean:
-	rm -f *.aux *.log *.gz *.toc *.out *.bbl *.blg
+	@for file in hw*; do \
+		if [[ "$$file" != *.tex && "$$file" != *.pdf ]]; then \
+			rm -f "$$file"; \
+		fi; \
+	done
 
+.PHONY: clean
