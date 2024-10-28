@@ -1,5 +1,5 @@
 function  x = deCasteljau(p, t)
-%DECASTELJAU de Casteljau算法计算Bezier曲线上的点
+%DECASTELJAU Use de Casteljau algorithm to compute the point on Bezier curve.
 %   Input:  
 %         p: control pologon given in a row vector of points.
 %         t: parameter value in [0,1].
