@@ -34,7 +34,7 @@
 \maketitle
 \ctexset { section = { format={\Large \bfseries } } }
 
-\section*{思考题1}
+\section*{思考题 1}
 \subsection*{1.}
 \begin{itemize}
     \item a.
@@ -47,7 +47,7 @@
         \end{equation*}
     \end{proof}
     \item b.
-    \begin{algorithm}
+    \begin{algorithm}[H]
         \caption{类 de Casteljau算法}
         \label{alg1}
         \renewcommand{\algorithmicrequire}{\textbf{Input:}}
@@ -103,7 +103,7 @@ $$
 $$
 \end{proof}
 
-\section*{思考题2}
+\section*{思考题 2}
 \subsection*{1.}
 \begin{proof}
     % 设Bézier 曲线的次数为$n$。\par
@@ -150,31 +150,70 @@ $$
 \end{proof}
 
 \section*{思考题 3}
+\subsection*{1.}
+\begin{algorithm}[H]
+    \label{alg2}
+    \caption{Bézier 曲线交点求解算法}
+    \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+    \renewcommand{\algorithmicensure}{\textbf{Output:}}
+    \begin{algorithmic}[1]
+        \REQUIRE $C_1(t),C_2(t)$
+        \ENSURE $C_1(t)\cap C_2(t)$
+        \STATE $hull1 \gets \text{ComputeConvexHull}(C_1.\text{control\_points})$
+            \STATE $hull2 \gets \text{ComputeConvexHull}(C_2.\text{control\_points})$
 
+            \IF{not $\text{ConvexHullsIntersect}(hull1, hull2)$}
+                \RETURN []
+            \ENDIF
+
+            \IF{$\text{ShouldSplit}(C_1, C_2)$}
+                \STATE $(C1\_left, C1\_right) \gets \text{SplitCurve}(C_1)$
+                \STATE $(C2\_left, C2\_right) \gets \text{SplitCurve}(C_2)$
+
+                \RETURN $\text{BezierIntersection}(C1\_left, C2\_left)$ \\
+                + $\text{BezierIntersection}(C1\_left, C2\_right)$ \\
+                + $\text{BezierIntersection}(C1\_right, C2\_left)$ \\
+                + $\text{BezierIntersection}(C1\_right, C2\_right)$
+            \ENDIF
+            \RETURN $\text{ApproximateIntersection}(C_1, C_2)$
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection*{2.}
+\begin{algorithm}[H]
+    \label{alg3}
+    \caption{$n$次多项式在$[0,1]$上的求根算法}
+    \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+    \renewcommand{\algorithmicensure}{\textbf{Output:}}
+    \begin{algorithmic}[1]
+        \REQUIRE $f(x) =\sum_{i=0}^{n}a_ix^i$
+        \ENSURE $\{x_i\in [0,1] \vert f(x_i)=0\}$
+        \STATE $f(x) =\sum_{i=0}^{n}a_ix^i = \sum_{i=0}^nb_iB_{i,n}(x) = p(x)$
+        \RETURN $\text{BezierIntersection}(p(x), y=0|_{x\in [0,1]})$
+    \end{algorithmic}
+\end{algorithm}
 
 \section*{思考题 4}
 \subsection*{1.}
 \begin{itemize}
     \item 2维：$p_0 = (-1,0)',
     p_1 = (0,1)',
-    p_2 = (0,-1)',
+    p_2 = (2,2)',
     p_3 = (1,0)',
-    p_4 = (3,3)',
-    p_5 = (-2,1)'.$
+    p_4 = (0,-1)'.$
 
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\textwidth]{bezier_2d.png}
         \label{fig1}
-        \caption*{2维Bézier曲线}
+        \caption{2维Bézier曲线}
     \end{figure}
 
     \item 3维：$p_0 = (-1,0,0)',
-    p_1 = (0,2,1)',
-    p_2 = (0,-1,0)',
+    p_1 = (0,2,1)'，
+    p_2 = (2,2,3)',
     p_3 = (1,0,2)',
-    p_4 = (2,2,3)',
-    p_5 = (2,3,-1)'.$
+    p_4 = (0,-1,0)'.$
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\textwidth]{bezier_3d.png}
@@ -184,6 +223,31 @@ $$
 \end{itemize}
 
 \subsection*{2.}
+\begin{itemize}
+    \item 2维：$p_0 = (-1,0)',
+    p_1 = (0,1)',
+    p_2 = (3,3)',
+    p_3 = (1,0)',
+    p_4 = (0,-1)'.$
 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{bezierFit_2d.png}
+        \label{fig3}
+        \caption{2维Bézier曲线拟合}
+    \end{figure}
+
+    \item 3维：$p_0 = (-1,0,0)',
+    p_1 = (0,2,1)'，
+    p_2 = (3,3,3)',
+    p_3 = (1,0,2)',
+    p_4 = (0,-1,0)'.$
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{bezierFit_3d.png}
+        \label{fig4}
+        \caption{3维Bézier曲线拟合}
+    \end{figure}
+\end{itemize}
 
 \end{document}

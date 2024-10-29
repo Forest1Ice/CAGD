@@ -4,7 +4,7 @@ function mid = findSpan(p,u,U)
 %   Input:
 %           p: degree.
 %           u: parameter
-%           U: knot vector
+%           U: b-spline knot vector
 %   Output:
 %           mid: index
 
