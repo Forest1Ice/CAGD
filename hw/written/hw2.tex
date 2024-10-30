@@ -35,7 +35,35 @@
 \ctexset { section = { format={\Large \bfseries } } }
 
 \section*{思考题 1}
-
+\begin{itemize}
+    \item 不同边界条件的三次样条函数在点$(1,\ln{1}),(2,\ln{2}),(3,\ln{3}),(4,\ln{4}),(6,\ln{6})$处插值$\ln{x}$。
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{cubic_log_first.png}
+        \label{fig: cubic_log_first}
+        \caption{一阶导数边界条件}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{cubic_log_natural.png}
+        \label{fig: cubic_log_natural}
+        \caption{自然边界条件}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{cubic_log_second.png}
+        \label{fig: cubic_log_second}
+        \caption{二阶导数边界条件}
+    \end{figure}
+    \item 对区间$[-1,1]$进行均匀划分，分别令$N=6,11,21,41,81$为节点个数。使用一阶边界条件的三次样条函数在这些节点处进行插值，
+    发现三次插值样条函数有效缓解了Runge现象。
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1.0\textwidth]{runge_spline.png}
+        \label{fig: runge_spline}
+        \caption{三次插值样条函数有效缓解了Runge现象}
+    \end{figure}
+\end{itemize}
 
 \section*{思考题 2}
 \begin{enumerate}

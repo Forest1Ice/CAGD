@@ -14,9 +14,9 @@ for k = 1:length(n)
     t = -1:2/(n(k)-1):1;
     q = [t; f(t)];
     y = cubicSpline(q, x, ["first", 25/338, -25/338]);
-    plot(x, y, lines(k));
+    plot(x, y, lines(k), LineWidth = 1.5);
 end
-plot(x,f(x), '-', LineWidth = 1);
+plot(x,f(x), '-', LineWidth = 1.5);
 legend([...
     "N = " + string(num2str(6)), ...
     "N = " + string(num2str(11)), ...
