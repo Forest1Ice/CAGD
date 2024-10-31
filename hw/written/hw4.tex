@@ -223,6 +223,7 @@ $$
 \end{itemize}
 
 \subsection*{2.}
+采用不同的参数化方法实现Bezier曲线拟合，分别为均匀参数化、累积弦长参数化和切比雪夫累积弦长参数化\footnote{参考《数据插值中的参数化新方法》}，并比较拟合效果。
 \begin{itemize}
     \item 2维：$p_0 = (-1,0)',
     p_1 = (0,1)',
@@ -232,9 +233,21 @@ $$
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.8\textwidth]{bezierFit_2d.png}
+        \includegraphics[width=0.8\textwidth]{bezierFit_2d_uniform.png}
         \label{fig3}
-        \caption{2维Bézier曲线拟合}
+        \caption{均匀参数化}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{bezierFit_2d_chord.png}
+        \label{fig4}
+        \caption{累积弦长参数化}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{bezierFit_2d_cheby.png}
+        \label{fig5}
+        \caption{切比雪夫累积弦长参数化}
     \end{figure}
 
     \item 3维：$p_0 = (-1,0,0)',
@@ -244,9 +257,21 @@ $$
     p_4 = (0,-1,0)'.$
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.8\textwidth]{bezierFit_3d.png}
-        \label{fig4}
-        \caption{3维Bézier曲线拟合}
+        \includegraphics[width=0.8\textwidth]{bezierFit_3d_uniform.png}
+        \label{fig6}
+        \caption{均匀参数化}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{bezierFit_3d_chord.png}
+        \label{fig7}
+        \caption{累积弦长参数化}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{bezierFit_3d_cheby.png}
+        \label{fig8}
+        \caption{切比雪夫累积弦长参数化}
     \end{figure}
 \end{itemize}
 
