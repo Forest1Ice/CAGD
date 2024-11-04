@@ -1,12 +1,11 @@
 function y = cubicSpline(q, x, boundary, draw)
-%CUBICSPLINE Interpolate given data points using natural cubic spline 
-% polynomials.
+%CUBICSPLINE Interpolate given data points using cubic spline polynomials.
 %  Input:
 %       q: two dimensional data points given in a row vector, where the
 %       first row is a strictly increasing sequence.
 %       x: paras to be evaluated.
 %       boundary: boundary condition, given in the string vector form, 
-%                 the first entry is chosen in "complete", "second" or "natural",
+%                 the first entry is chosen in "first", "second" or "natural",
 %                 while the last are specified values, which are not needed
 %                 for "natural" class.
 %       draw: whether to draw figure, false in default.
@@ -82,7 +81,7 @@ elseif boundary(1) == "first"
     % solve equation using shooting method, because A is a strictly diagonally-dominant matrix
     M = solve_chase(A, b);
 else
-    error(['Invalid input! Expecting boundary condition "complete", ' ...
+    error(['Invalid input! Expecting boundary condition "first", ' ...
         '"natural" or "second"!']);
 end
 

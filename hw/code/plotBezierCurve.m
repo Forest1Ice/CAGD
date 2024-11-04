@@ -1,4 +1,4 @@
-function fig = plotBezierCurve(p, t, polygon, method)
+function plotBezierCurve(p, t, polygon, method)
 %PLOTBEZIERCURVE Draw Bezier curve
 %   Input:
 %         p: control pologon given in a row vector of points.
@@ -7,8 +7,6 @@ function fig = plotBezierCurve(p, t, polygon, method)
 %                  true by default.
 %         method: "deCasteljau", de Casteljau algorithm; 'bernstein',
 %         by bernstein basis functions. 'deCasteljau' by default.
-%   Output:
-%         fig: plotting figure
 
 if nargin <= 3
     method = "deCasteljau";
@@ -34,17 +32,14 @@ else
 end
 
 % plot Bezier curve
+hold on
 if m == 2   % two dimension
-    fig = figure('Name', 'Two Dimension Bezier Curve');
-    hold on
     plot(x(1,:), x(2,:), '-b');
     if polygon
         plot(p(1,:), p(2,:), 'r--.', 'MarkerSize', 10);
         legend('Bezier curve','control polygon');
     end
 elseif m == 3   % three dimension
-    fig = figure('Name', 'Three Dimension Bezier Curve');
-    hold on
     plot3(x(1,:), x(2,:), x(3,:), '-b');
     if polygon
         plot3(p(1,:), p(2,:), p(3,:), 'r--.', 'MarkerSize', 10);

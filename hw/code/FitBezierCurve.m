@@ -1,4 +1,4 @@
-function fig = FitBezierCurve(q, n, method)
+function p = fitBezierCurve(q, n, method)
 %SMOOTHFITBEZIERCURVE Bezier curve fitting.
 %   Use least square method to fit given data points with Bezier curve.
 %   Input:
@@ -54,13 +54,13 @@ for k = 1:m
 end
 
 % plot Bezier curve and data points
-fig = plotBezierCurve(p, 0:0.01:1, false);
+figure('Name', "Bezier Curve Fitting");
+plotBezierCurve(p, 0:0.01:1, false);
 if m == 2
     plot(q(1,:), q(2,:), 'r.', 'MarkerSize', 10);
 elseif m == 3
     plot3(q(1,:), q(2,:), q(3, :), 'r.', 'MarkerSize', 10);
 end
 legend("Bezier curve", "Sample data");
-set(fig, 'Name', "Bezier Curve Fitting");
 
 end

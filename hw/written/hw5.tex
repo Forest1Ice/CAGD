@@ -71,8 +71,57 @@
 \end{proof}
 
 \section*{思考题 2}
-
-
+\subsection*{1.}
+\begin{proof}
+    这里我们设$k$为次数，当$t\in [l,l+1]$时，只需考虑基函数$N_{j-k}(t), j = l,\dots,l+k$。
+    根据均匀B样条的性质，$N_{i,k}(t)=N_{0,k}(t-i)$，因此问题转化为：$\forall i=0,\dots,k$，计算系数$s_{i,j}^{(k)},i=0,\dots,k$，
+    \begin{equation}
+        \forall j = 0,\dots,k, \quad N_{j-k,k}(t) = \sum_{i=0}^ks_{i,j}^{(k)}B_{i,k}(t),\quad t\in [0,1].
+        \label{eq1}
+    \end{equation}
+    将上式写成矩阵形式，
+    \begin{equation}
+        [N_{-k,k}(t)\cdots N_{0,k}(t)] = [B_{0,k}(t)\cdots B_{k,k}(t)]S^{(k)},
+        \label{eq2}
+    \end{equation}
+    其中，$S^{(k)}$是B-spline到Bezier表示的$k$次转换矩阵。由于B-spline基函数和Bernstein基函数都具有权性，从而
+    $S^{(k)}$的每一行元素之和均为1。因此，将B-spline曲线转化为Bezier形式后，每个Bezier控制顶点都是B-spline控制顶点
+    的凸线性组合。\par
+    将Cox-deBoor公式应用到式($\ref{eq1}$)，可得
+    \begin{equation}
+        \sum_{i=0}^ks_{i,j}^{(k)}B_{i,k}(t) = \sum_{i=0}^{k-1}(\frac{t-j+k}{k}s_{i,j-1}^{(k-1)} + \frac{j+1-t}{k}s_{i,j}^{(k-1)})B_{i,k-1}(t).
+        \label{eq3}
+    \end{equation}
+    根据Bernstein基函数的递推式，再将$B_{i,n}(t)$替换掉，可得$\forall j=0,\dots,n,i=0,\dots,n-1$，
+    \begin{equation}
+        ts_{i+1,j}^{(k)} + (1-t)s_{i,j}^{(k)} = \frac{t-j+k}{k}s_{i,j-1}^{(k-1)} + \frac{j+1-t}{k}s_{i,j}^{(k-1)},\quad t\in [0,1],
+        \label{eq4}
+    \end{equation}
+    其中，$\forall i=0,\dots,k-1,s_{i,-1}^{(k-1)}=s_{i,k}^{(k-1)}=0$。因此，在$t=0$处计算式$(4)$，我们有
+    \begin{equation}
+        s_{i,j}^{(k)} = \frac{k-j}{k}s_{i,j-1}^{(k-1)} + \frac{j+1}{k}s_{i,j}^{(k-1)},\quad \forall j = 0,\dots,k, i = 0,\dots,k-1,
+        \label{eq5}
+    \end{equation}
+    而在$t=1$处计算式(\ref{eq4})，我们有
+    \begin{equation}
+        s_{i+1,j}^{(k)} = \frac{k+1-j}{k}s_{i,j-1}^{(k-1)} + \frac{j}{k}s_{i,j}^{(k-1)},\quad \forall j = 0,\dots,k, i = 0,\dots,k-1.
+        \label{eq6}
+    \end{equation}
+    因此，从$1\times 1$矩阵$S^{(0)}=s_{0,0}^{(0)}=1$开始（这是因为$N_{0,0}(t)=B_{0,0}(t)=1,\forall t\in [0,1]$），$(k+1)\times (k+1)$
+    转换矩阵$S^{(k)} = (s_{i,j}^{(k)})_{i,j=0,\dots,k}(k\geq 1)$可以被递归定义为：$\forall j = 0,\dots,k$，
+    \begin{equation}
+        \begin{aligned}
+            s_{i,j}^{(k)} &= \frac{k-j}{k}s_{i,j-1}^{(k-1)} + \frac{j+1}{k}s_{i,j}^{(k-1)},\quad \forall i = 0,\dots,k-1,\\
+            s_{k,j}^{(k)} &= \frac{k+1-j}{k}s_{k-1,j-1}^{(k-1)} + \frac{j}{k}s_{k-1,j}^{(k-1)}.
+            \label{eq7}
+        \end{aligned}
+    \end{equation}
+    通过式(\ref{eq7})，可以很容易计算出转换矩阵$S^{(k)}$，即我们有
+\begin{equation}
+    [N_{l-k,k}(t)\cdots N_{l,k}(t)] = [B_{0,k}(t-l)\cdots B_{k,k}(t-l)]S^{(k)},\quad t\in [l,l+1].
+    \label{eq8}
+\end{equation}
+\end{proof}
 \section*{思考题 3}
 \subsection*{1.}
 \begin{itemize}
@@ -107,6 +156,29 @@
         $p_0=(-1,0,0)', p_1=(0,2,1)', p_2=(2,2,3)', p_3=(1,0,2)', p_4=(0,-1,0)'$}
     \end{figure}
 \end{itemize}
+
+\subsection*{2.}
+采用不同的参数化方法实现三次B-spline曲线插值，分别为均匀参数化、累积弦长参数化和切比雪夫累积弦长参数化\footnote{参考《数据插值中的参数化新方法》}，并比较插值效果。\par
+型值点：$p_0=(-1,0)', p_1=(0,1)', p_2=(2,2)', p_3=(1,0)', p_4=(0,-1)'$，
+边界导矢：$D1 = (7.0990, 7.0990)', D2=(-7.0990, -7.0990)'$。
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{cubic_bspline_interp_uniform.png}
+    \label{fig: cubic_bspline_interp_uniform}
+    \caption{均匀参数化}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{cubic_bspline_interp_chord.png}
+    \label{fig: cubic_bspline_interp_chord}
+    \caption{累积弦长参数化}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{cubic_bspline_interp_cheby.png}
+    \label{fig: cubic_bspline_interp_cheby}
+    \caption{切比雪夫累积弦长参数化}
+\end{figure}
 
 
 \end{document}
