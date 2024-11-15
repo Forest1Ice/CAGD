@@ -1,0 +1,108 @@
+\documentclass[utf8]{ctexart}
+
+\usepackage[a4paper,left=1.25in,right=1.25in,top=1in,bottom=1in]{geometry}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{newclude}
+\usepackage[perpage]{footmisc}
+
+\graphicspath{ {images/} }
+\raggedbottom	% 令页面在垂直方向向顶部对齐
+\renewcommand\qedsymbol{QED}
+\newcommand{\sign}[1]{\mathrm{sgn}(#1)}
+\everymath{\displaystyle}   % 行内公式采用行间公式格式排列
+\pagestyle{plain}
+
+\title{《计算机辅助几何设计》第七次作业}
+\author{姓名：殷文良\qquad 学号：12435063}
+\date{\today}
+
+\begin{document}
+\maketitle
+\ctexset { section = { format={\Large \bfseries } } }
+
+\section*{思考题 1}
+\subsection*{1.}
+\begin{proof}
+    前者成立，后者不成立。
+    \begin{itemize}
+        \item 根据曲率和挠率的定义，曲率和挠率连续是$G^3$连续的必要条件。
+        即如果两条曲线在连接点处$G^3$连续，那么其曲率和挠率必须是连续的。
+        \item 但如果仅有曲率和挠率连续，可能仍存在其他因素导致$G^3$连续不成立。
+        例如，如果两条曲线在连接点的切向或法向变化不匹配，即便它们的曲率和挠率连续，也可能导致$G^3$不连续。
+    \end{itemize}
+\end{proof}
+
+\subsection*{2.}
+\begin{proof}
+    \item 第二类边界条件：$P'(a)=m_0,P'(b)=m_n$。
+    \begin{equation}
+        \begin{bmatrix}
+            2+\bar{\nu}_1 & \mu_1 & 0 & \cdots & 0\\
+            \lambda_2 & 2+\bar{\nu}_2 & \mu_2 & \cdots & 0\\
+            \vdots & \ddots & \ddots & \ddots & \vdots\\
+            0 & \cdots & \lambda_{n-2} & 2+\bar{\nu}_{n-2} & \mu_{n-2}\\
+            0 & \cdots & 0 & \lambda_{n-1} & 2+\nu_{n-1}
+        \end{bmatrix}
+        \begin{bmatrix}
+            m_1\\
+            m_2\\
+            \vdots\\
+            m_{n-2}\\
+            m_{n-1}
+        \end{bmatrix} = 
+        \begin{bmatrix}
+            3D_1 - \lambda_1m_0\\
+            3D_2\\
+            \vdots\\
+            3D_{n-2}\\
+            3D_{n-1}-\mu_{n-1}m_n
+        \end{bmatrix}.
+    \end{equation}
+    其中，$\bar{\nu}_i=\frac{\nu_i(u_i-u_{i-1})(u_{i+1}-u_i)}{2(u_{i+1}-u_{i-1})}$,
+    $D_i=\lambda_i\frac{P_i-P_{i-1}}{u_i-u_{i-1}} + \mu_i\frac{P_{i+1}-P_i}{u_{i+1}-u_i}$
+    \item 第三类边界条件：$P(a)=P(b),P'(a)=P'(b),P^"(a+)-P^"(b-)=(\nu_0+\nu_n)P'(a)$。
+    \begin{equation}
+        \begin{bmatrix}
+            \bar{\nu}_0 & \Delta u_n & 0 & 0 & \cdots & \Delta u_1\\
+           \lambda_1 &  2+\bar{\nu}_1 & \mu_1 & 0 & \cdots & 0\\
+            0 &\lambda_2 & 2+\bar{\nu}_2 & \mu_2 & \cdots & 0\\
+            0 & 0 & \vdots & \ddots & \ddots  & \vdots\\
+            0 & 0 & \cdots & \lambda_{n-2} & 2+\bar{\nu}_{n-2} & \mu_{n-2}\\
+            \mu_{n-1} & 0 & \cdots & 0 & \lambda_{n-1} & 2+\nu_{n-1}
+        \end{bmatrix}
+        \begin{bmatrix}
+            m_0\\
+            m_1\\
+            m_2\\
+            \vdots\\
+            m_{n-2}\\
+            m_{n-1}
+        \end{bmatrix} = 
+        3
+        \begin{bmatrix}
+            \Delta u_n\frac{P_1-P_0}{\Delta u_1} + \Delta u_1\frac{P_n-P_{n-1}}{\Delta u_{n}}\\
+            D_1\\
+            D_2\\
+            \vdots\\
+            D_{n-2}\\
+            D_{n-1}
+        \end{bmatrix}.
+    \end{equation}
+    其中，$\bar{\nu}_0=\frac{\Delta u_n\Delta u_1(\nu_0 + \nu_n) + 4(\Delta u_n + \Delta u_1)}{2}, m_0=m_n$。
+\end{proof}
+
+\end{document}

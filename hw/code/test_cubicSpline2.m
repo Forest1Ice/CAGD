@@ -2,7 +2,7 @@
 
 % Runge function, on on [-1,1]
 f = @(x) 1 ./ (1 + 25 * x.^2);
-% number of knot vector
+% number of knots
 n = [6, 11, 21, 41, 81];
 % paras to be estimated
 x = -1:0.01:1;
