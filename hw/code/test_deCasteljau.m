@@ -13,7 +13,7 @@ p = [p0,p1,p2,p3,p4,p5];
 x1 = deCasteljau(p, 0);
 x2 = deCasteljau(p, 1);
 
-% check whether x1 == p0 or x2 == p5
+% check whether x1 == p0 and x2 == p5
 if isequal(x1, p0) && isequal(x2, p5)
     disp('Success! deCasteljau algorithm is correct!');
 else

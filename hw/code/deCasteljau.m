@@ -4,7 +4,7 @@ function  x = deCasteljau(p, t)
 %         p: control pologon given in a row vector of points.
 %         t: parameter value in [0,1].
 %   Output: 
-%         x: point of Bezier curve at t.
+%         x: point on Bezier curve at t.
 
 % number of control points
 [~, n] = size(p);
