@@ -4,7 +4,7 @@ function S = horner2(a, u, v, draw)
 %       a: coefficients matrix with the 3-d entries in the form of a cell
 %       array.
 %       u, v: parameters to be evaluated on.
-%       draw:   whether to plot the surface, false in default.
+%       draw:   whether to plot the surface, false by default.
 %   Output:
 %       S: points on the surface in the form of a cell array.
 
@@ -37,6 +37,7 @@ if draw
     ylabel('Y');
     zlabel('Z');
     grid on
+    view([-80 30]);
 end
 
 end

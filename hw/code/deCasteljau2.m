@@ -31,7 +31,7 @@ else
     for j = 1:s
         for k = 1:t
             for i = 1:m
-                polygon = cell2mat(p(:, i));
+                polygon = cell2mat(p(i, :));
                 q(:, i) = deCasteljau(polygon, v(k));
             end
             S{j, k} = deCasteljau(q, u(j));

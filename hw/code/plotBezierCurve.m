@@ -16,16 +16,19 @@ if nargin <= 2
     polygon = true;
 end
 
-[m, ~] = size(p);   % dimension
-n = length(t);
-x = zeros(m, n);
+[m, n] = size(p);   % dimension
+s = length(t);
+x = zeros(m, s);
 
 if method == "deCasteljau"
-    for i = 1:n
+    for i = 1:s
         x(:, i) = deCasteljau(p, t(i));
     end
 elseif method == "bernstein"
-    
+    for i = 1:s
+        B = allBernstein(n - 1, t(i));
+        x(:, i) = sum(B.* p, 2);
+    end
 else
     error(['Invalid input! Expecting method either "deCasteljau" or ' ...
         '"bernstein" !']);

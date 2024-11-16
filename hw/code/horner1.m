@@ -5,7 +5,7 @@ function C = horner1(a, t, draw)
 %       a:  Coefficients with the same dimension(1, 2, 3, ...) in the form
 %       of row vector by the order from 0 degree to n.
 %       t:  Parameters to be evaluated on.
-%       draw: Whether to plot the curve, false in default. And the
+%       draw: Whether to plot the curve, false by default. And the
 %       dimension can be only 1, 2 or 3.
 %   Output:
 %       C:  Points on the curve.
