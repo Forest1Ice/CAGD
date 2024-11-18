@@ -92,7 +92,7 @@
     \end{figure}
 \end{itemize}
 
-\section*{2.}
+\subsection*{2.}
 \begin{proof}
     由双线性曲面性质可知，
     $$
@@ -105,9 +105,48 @@
         &= \sum_{i=0}^m\sum_{j=0}^n\left (  \frac{i}{m}(P_{10}-P_{00}) + \frac{j}{n}(P_{01} - P_{00}) + P_{00}\right )B_{i,m}(u)B_{j,n}(v)\\
         &= \sum_{j=0}^n u(P_{10}-P_{00})B_{j,n}(v) + \sum_{i=0}^m v(P_{01}-P_{00})B_{i,m}(u) + \sum_{i=0}^m\sum_{j=0}^nP_{00}B_{i,m}(u)B_{j,n}(v)\\
         &= u(P_{10}-P_{00}) + v(P_{01} - P_{00}) + P_{00} = X(u,v).
-    \end{aligned}
+    \end{aligned} 
     $$
 \end{proof}
+
+\subsection*{3.}
+\begin{proof}
+    椭球$\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$的极坐标参数化为
+    $$
+    \begin{cases}
+        x &= a\sin{\theta}\cos{\phi}\\
+        y &= b\sin{\theta}\sin{\phi}\\
+        z &= c\cos{\theta}
+    \end{cases},\quad
+    \theta \in [0, \pi], \phi \in [0,2\pi).
+    $$
+    引入两个新的参数$u,v$，定义如下：
+    $$
+    \begin{cases}
+        u &= \tan{\frac{\theta}{2}},\quad u \in [0,\infty)\\
+        v &= \tan{\frac{\phi}{2}}, \quad v \in (-\infty, \infty).
+    \end{cases}
+    $$
+    于是得到椭球的有理参数化：
+    $$
+    \begin{cases}
+        x &= \frac{2au(1-v^2)}{(1+u^2)(1+v^2)}\\
+        y &= \frac{4buv}{(1+u^2)(1+v^2)}\\
+        z &= \frac{c(1-u^2)}{1+u^2}
+    \end{cases},
+    \quad u \in [0,\infty), v \in (-\infty, \infty).
+    $$
+\end{proof}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{ellipsoid.png}
+    \caption{$\frac{x^2}{9}+\frac{y^2}{4}+\frac{z^2}{1}=1$}
+    \label{fig: ellipsoid}
+\end{figure}
+
+\section*{思考题 2.}
+\subsection*{1.}
+
 
 
 \end{document}
