@@ -61,6 +61,7 @@ for k = 1:m
 end
 
 % draw figure
+figure('Name', 'Cubic B-spline Curve Interpolation');
 plotBsplineCurve(3, u, p, x, false);
 if m == 2
     plot(q(1,:), q(2,:), 'r.', 'MarkerSize', 10);

@@ -23,8 +23,8 @@ v = [0, 1];
 S = deCasteljau2(p, u, v);
 S = cell2mat(S(:)');
 
-% check whether S(0, 0) == p11, S(1, 0) == p31, S(0, 1) == p14 and S(1, 1)
-%   == p34
+% check whether S(0, 0) == p11, S(1, 0) == p31, S(0, 1) == p14 and 
+% S(1, 1) == p34
 if isequal(S(:, 1), p{1, 1}) && isequal(S(:, 2), p{3, 1})...
     && isequal(S(:, 3), p{1, 4}) && isequal(S(:, 4), p{3, 4})
     disp('Success! deCasteljau algorithm is correct!');

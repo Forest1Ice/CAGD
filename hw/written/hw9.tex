@@ -67,7 +67,7 @@
     $$
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.6\textwidth]{bezierSurf_deCas.png}
+        \includegraphics[width=0.8\textwidth]{bezierSurf_deCas.png}
         \caption{$2\times 3$次Bezier曲面：de Casteljau算法}
         \label{fig: bezierSurf_deCas}
     \end{figure}
@@ -86,7 +86,7 @@
     $$
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.6\textwidth]{bezierSurf_bern.png}
+        \includegraphics[width=0.8\textwidth]{bezierSurf_bern.png}
         \caption{$2\times 3$次Bezier曲面：控制曲线算法}
         \label{fig: bezierSurf_bern}
     \end{figure}
@@ -139,7 +139,7 @@
 \end{proof}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{ellipsoid.png}
+    \includegraphics[width=0.8\textwidth]{ellipsoid.png}
     \caption{$\frac{x^2}{9}+\frac{y^2}{4}+\frac{z^2}{1}=1$}
     \label{fig: ellipsoid}
 \end{figure}
@@ -148,5 +148,35 @@
 \subsection*{1.}
 
 
+
+\subsection*{3.}
+\begin{itemize}
+    \item \textbf{Bezier曲面插值}\\
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{bezierSurfInterp.png}
+        \caption{双三次Bezier曲面}
+        \label{fig: bezierSurfInterp}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{bezierSurfInterp2.png}
+        \caption{全局插值不能很好地处理局部数据点共面的情况}
+        \label{fig: bezierSurfInterp2}
+    \end{figure}
+    \item \textbf{B样条曲面插值}\\
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{bsplineSurfInterp.png}
+        \caption{双二次B-spline曲面}
+        \label{fig: bsplineSurfInterp}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{bsplineSurfInterp2.png}
+        \caption{双三次B-spline曲面, 全局插值不能很好地处理局部数据点共面的情况}
+        \label{fig: bsplineSurfInterp2}
+    \end{figure}
+\end{itemize}
 
 \end{document}

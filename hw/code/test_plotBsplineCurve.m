@@ -19,7 +19,8 @@ p3 = [1;0];
 p4 = [0;-1];
 p = [p0,p1,p2,p3,p4];
 
-fig1 = plotBsplineCurve(d, u, p, t);
+fig1 = figure('Name', 'Two Dimension Bspline Curve');
+plotBsplineCurve(d, u, p, t);
 
 % three dimension
 p0 = [-1;0;0];
@@ -29,4 +30,5 @@ p3 = [1;0;2];
 p4 = [0;-1;0];
 p = [p0,p1,p2,p3,p4];
 
-fig2 = plotBsplineCurve(d, u, p, t);
+fig2 = figure('Name', 'Three Dimension Bspline Curve');
+plotBsplineCurve(d, u, p, t);

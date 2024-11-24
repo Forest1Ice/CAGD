@@ -1,4 +1,4 @@
-function fig = plotBsplineCurve(d, u, p, t, polygon)
+function plotBsplineCurve(d, u, p, t, polygon)
 %PLOTBSPLINECURVE Draw Bspline curve
 %   Input:
 %         d: degree of curve.
@@ -7,8 +7,6 @@ function fig = plotBsplineCurve(d, u, p, t, polygon)
 %         t: parameter values.
 %         polygon: true, plot control pologon, false otherwise. 
 %                  true by default.
-%   Output:
-%         fig: plotting figure
 
 if nargin < 5
     polygon = true;
@@ -33,7 +31,6 @@ end
 
 % plot Bspline curve
 if m == 2   % two dimension
-    fig = figure('Name', 'Two Dimension Bspline Curve');
     hold on
     plot(x(1,:), x(2,:), '-b');
     if polygon
@@ -41,7 +38,6 @@ if m == 2   % two dimension
         legend('Bspline curve','control polygon');
     end
 elseif m == 3   % three dimension
-    fig = figure('Name', 'Three Dimension Bspline Curve');
     hold on
     plot3(x(1,:), x(2,:), x(3,:), '-b');
     if polygon
