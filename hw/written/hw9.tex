@@ -146,8 +146,55 @@
 
 \section*{思考题 2.}
 \subsection*{1.}
+\begin{proof}
+设$xz$平面内有一个半径为$r$，圆心距$x,z$轴分别为$d,R$的整圆，表示为
+$$
+c(v) = \frac{\sum_{j=0}^6N_{j,3}(v)w_jP_j}{\sum_{j=0}^6N_{j,3}(v)w_j},
+$$
+其中，节点向量为
+$$
+V =  \{0, 0, 0, \frac{1}{4}, \frac{1}{2}, \frac{1}{2}, \frac{3}{4}, 1, 1, 1\},
+$$
+控制顶点和权重分别为
+$$
+\begin{aligned}
+    \{P_{j}\} &= \{(R+r, 0, d), (R+r, 0, d + r), (R - r, 0, d + r), (R-r, 0, d), \\
+    &\qquad (R - r, 0, d - r), (R + r, 0, d - r), (R+r, 0, d)\},\\
+    \{w_j\} &= \{1, \frac{1}{2}, \frac{1}{2}, 1, \frac{1}{2}, \frac{1}{2}, 1\}.
+\end{aligned}
+$$
+将$c(v)$绕$z$轴旋转得到环面
+$$
+S(u, v) = \frac{\sum_{i=0}^6\sum_{j=0}^6N_{i,3}(u)N_{j,3}(v)w_{i,j}P_{ij}}{\sum_{i=0}^6\sum_{j=0}^6N_{i,3}(u)N_{j,3}(v)w_{i,j}},
+$$
+其中，$P_{i,j}$是由$P_{0, j} = P_j$旋转生成圆得到的控制顶点；节点向量
+$U,V = \{0, 0, 0, \frac{1}{4}, \frac{1}{2}, \frac{1}{2}, \frac{3}{4}, 1, 1, 1\}$；
+而曲面权因子由如下公式计算
+$$
+w_{ij} =
+\begin{cases}
+    w_{0, j},\quad &j = 0, 3, 6,\\
+    \frac{1}{2}w_{0,j}, \quad & j = 1,2,4,5
+\end{cases},\quad
+w_{0,j} = w_j, \quad j = 0,1,\dots,6.
+$$
 
+\end{proof}
 
+\subsection*{2.}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{ffd_1.png}
+    \caption{Bézier 表示具有线性精度}
+    \label{fig: ffd_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{ffd_2.png}
+    \caption{变形后：$(\frac{1}{2}, 0)\to (\frac{2}{3}, \frac{1}{4}), \quad (1, 1)\to (1.5, 2)$}
+    \label{fig: ffd_2}
+\end{figure}
 
 \subsection*{3.}
 \begin{itemize}

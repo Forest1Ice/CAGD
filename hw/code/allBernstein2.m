@@ -10,7 +10,8 @@ function S = allBernstein2(p, u, v)
 s = length(u);
 t = length(v);
 S = cell(s, t);
-q = zeros(3, m);
+d = length(p{1, 1});    % dimension
+q = zeros(d, m);
 
 for j = 1:s
     for k = 1:t

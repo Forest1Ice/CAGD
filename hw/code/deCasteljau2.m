@@ -10,12 +10,13 @@ function S = deCasteljau2(p, u, v)
 s = length(u);
 t = length(v);
 S = cell(s, t);
+d = length(p{1, 1});    % dimension
 
 % For efficiency, we choose different computing orders based on sizes
 % of m and n.
 if m <= n
     % Compute C_{u0}(v) first
-    q = zeros(3, n);
+    q = zeros(d, n);
     for j = 1:s
         for k = 1:t
             for i = 1:n
@@ -27,7 +28,7 @@ if m <= n
     end    
 else
     % Compute C_{v0}(u) first
-    q = zeros(3, m);
+    q = zeros(d, m);
     for j = 1:s
         for k = 1:t
             for i = 1:m

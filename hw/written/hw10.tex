@@ -1,0 +1,102 @@
+\documentclass[utf8]{ctexart}
+
+\usepackage[a4paper,left=1.25in,right=1.25in,top=1in,bottom=1in]{geometry}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{newclude}
+\usepackage[perpage]{footmisc}
+
+\graphicspath{ {images/} }
+\raggedbottom	% 令页面在垂直方向向顶部对齐
+\renewcommand\qedsymbol{QED}
+\newcommand{\sign}[1]{\mathrm{sgn}(#1)}
+\everymath{\displaystyle}   % 行内公式采用行间公式格式排列
+\pagestyle{plain}
+
+\title{《计算机辅助几何设计》第十次作业}
+\author{姓名：殷文良\qquad 学号：12435063}
+\date{\today}
+\ctexset { section = { format={\Large \bfseries } } }
+
+\begin{document}
+\maketitle
+\section*{思考题 1}
+\subsection*{1.}
+\begin{proof}
+    设存在系数$a_{ij}$使得
+    $$
+    \sum_{i+j\leq n}a_{ij}J_{i,j,k}^n(u,v,w) = \sum_{i+j\leq n}a_{ij}\frac{n!}{i!j!k!}u^iv^jw^k = 0.
+    $$
+    上式两端同除以$w^n$，可得
+    $$
+    \sum_{i+j\leq n}a_{ij}\frac{n!}{i!j!k!}\frac{u^iv^j}{w^{n-k}} = \sum_{i+j\leq n}a_{ij}\frac{n!}{i!j!k!}\frac{u^i}{w^{i}}\frac{v^j}{w^j} := \sum_{i+j\leq n}a_{ij}\frac{n!}{i!j!k!}x^iy^j,
+    $$
+    其中，$x := \frac{u}{w}, y := \frac{v}{w}$。\\
+    由二元幂函数的线性无关性，可知$\forall (i,j,k), a_{ij}\frac{n!}{i!j!k!}=0$，即$a_{ij} = 0$，从而三角形上定义的
+    Bernstein函数是线性无关的。
+\end{proof}
+
+\subsection*{2.}
+\begin{proof}
+    由于$\alpha,\beta,\gamma=n-\alpha-\beta>0$，根据三角域 Bernstein 基函数的权性，可得
+    $$
+    \sum_{i+j+k=n}\frac{(n-\alpha-\beta)!}{(i-\alpha)!(j-\beta)!k!}u^{i-\alpha}v^{j-\beta}w^k = 1.
+    $$
+    上式两端同乘以$u^{\alpha}v^{\beta}$，可得
+    $$
+    \begin{aligned}
+        u^{\alpha}v^{\beta} &= \sum_{i+j+k=n}\frac{(n-\alpha-\beta)!}{(i-\alpha)!(j-\beta)!k!}u^{i}v^{j}w^k\\
+        &= \frac{\alpha!\beta!\gamma!}{n!}\sum_{i+j+k=n}\frac{n!}{[(i-\alpha)!\alpha!][(j-\beta)!\beta!]k!}u^{i}v^{j}w^k\\
+        &= \frac{\alpha!\beta!\gamma!}{n!}\sum_{i+j+k=n}\frac{i!j!}{[(i-\alpha)!\alpha!][(j-\beta)!\beta!]}\frac{n!}{i!j!k!}u^{i}v^{j}w^k\\
+        &= \frac{\alpha!\beta!\gamma!}{n!}\sum_{i+j+k=n}\binom{i}{\alpha}\binom{j}{\beta}B_{ijk}^n(u,v,w).
+    \end{aligned}
+    $$
+\end{proof}
+
+\subsection*{3.}
+\begin{proof}
+    由第2题的结论，可得
+    $$
+    x^iy^j = \frac{i!j!(n-i-j)!}{n!}\sum_{r+s+t=n}\binom{r}{i}\binom{s}{j}B_{rst}^n(x,y,z),
+    $$
+    其中，$z=1-x-y$。因此，二元多项式可转化为如下的Bezier三角片形式
+    $$
+    \begin{aligned}
+    b(x,y) &= \sum_{0\leq i+j\leq n}a_{ij}x^iy^j\\
+    &= \sum_{0\leq i+j\leq n}a_{ij}\frac{i!j!(n-i-j)!}{n!}\sum_{r+s+t=n}\binom{r}{i}\binom{s}{j}B_{rst}^n(x,y,z).
+    \end{aligned}
+    $$
+\end{proof}
+
+\section*{4.}
+\begin{proof}
+    对于给定的$n$次Bézier三角片$B^n(P) = \sum_{i+j+k=n}Q_{i,j,k}J_{i,j,k}^n(P)$，\newline
+    取三角形$T = Q_{i+1,j,k},Q_{i,j+1,k},Q_{i,j,k+1} := Q_0,Q_1,Q_2(i+j+k=n-1)$。\\
+    从$Q_1$处出发向对边$Q_0Q_2$连一直线交于点$Q_3$，设$|Q_0Q_3| = s|Q_0Q_2|, 0\leq s\leq 1$。则对于$Q_1Q_3$上任意一点$Q$，根据几何性质有
+    $$
+    Q = (1-s)tQ_0 + (1 - t)Q_1 + stQ_2,\quad 0\leq t \leq 1.
+    $$
+    于是，Bézier三角片中参数定义在该直线上的曲线方程为
+    $$
+    \begin{aligned}
+    c(t) = B^n(Q) &= \sum_{i+j+k=n}Q_{i,j,k}J_{i,j,k}^n(Q)
+        &= \sum_{i+j+k=n}Q_{i,j,k}J_{i,j,k}^n((1-s)tQ_0 + (1 - t)Q_1 + stQ_2),\\
+        0 \leq t \leq 1.
+    \end{aligned}
+        $$
+\end{proof}
+
+\end{document}
