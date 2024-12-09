@@ -13,7 +13,8 @@ dv = length(v) - m - 1;
 s = length(tu);
 t = length(tv);
 S = cell(t, s);
-q = zeros(3, m);
+d = length(p{1, 1});
+q = zeros(d, m);
 
 for i = 1:t
     vspan = findSpan(dv, tv(i), v);
