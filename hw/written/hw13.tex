@@ -36,7 +36,42 @@
 
 \section*{1. 思考题}
 \begin{proof}
-    
+    \begin{itemize}
+        \item \textbf{均匀二次B样条}\\
+        根据二次B样条细分算法，有
+        $$
+        \begin{aligned}
+            P_{2i}^{j+1} &= \frac{3}{4}P_i^j+\frac{1}{4}P_{i+1}^j\\
+            P_{2i+1}^{j+1} &= \frac{1}{4}P_{i}^j + \frac{3}{4}P_{i+1}^j.
+        \end{aligned}
+        $$
+        对上式取差分，我们有
+        $$
+        \begin{aligned}
+            (\Delta P^{j+1})_{2i} &= P_{2i+1}^{j+1} - P_{2i}^{j+1} = \frac{1}{4}(-2P_{i}^j+2P_{i+1}^{j})\\
+            &= \frac{1}{2}(\Delta P^j)_i.
+        \end{aligned}
+        $$
+        类似地，我们有$(\Delta P^{j+1})_{2i+1} = \frac{1}{2}(\Delta P^j)_{i+1}$。\par
+        因此，$\|D\| = \frac{1}{2}$，根据细分收敛定理，均匀二次B样条细分曲线收敛。
+        \item \textbf{均匀三次B样条}\\
+        根据三次B样条细分算法，有
+        $$
+        \begin{aligned}
+            P_{2i}^{j+1} &= \frac{1}{8}(4P_i^j+4P_{i+1}^j)\\
+            P_{2i+1}^{j+1} &= \frac{1}{8}(P_{i-1}^j + 6P_i^j + P_{i+1}^j).
+        \end{aligned}
+        $$
+        对上式取差分，我们有
+        $$
+        \begin{aligned}
+            (\Delta P^{j+1})_{2i} &= P_{2i+1}^{j+1} - P_{2i}^{j+1} = \frac{1}{8}(P_{i-1}^j+2P_{i}^{j}-3P_{i+1}^{j})\\
+            &= \frac{1}{8}(3(P_{i+1}^j-P_i^j) + (P_{i}^j-P_{i-1}^j)) = \frac{1}{8}(3(\Delta P^j)_{i} + (\Delta P^j)_{i-1}).
+        \end{aligned}
+        $$
+        类似地，我们有$(\Delta P^{j+1})_{2i+1} = \frac{1}{8}(3(\Delta P^j)_{i} + (\Delta P^j)_{i+1})$。\par
+        因此，$\|D\| = \frac{1}{2}$，根据细分收敛定理，均匀三次B样条细分曲线收敛。
+    \end{itemize}
 \end{proof}
 
 \end{document}
