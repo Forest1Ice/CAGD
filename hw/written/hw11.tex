@@ -1,0 +1,89 @@
+\documentclass[utf8]{ctexart}
+
+\usepackage[a4paper,left=1.25in,right=1.25in,top=1in,bottom=1in]{geometry}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{newclude}
+\usepackage[perpage]{footmisc}
+
+\graphicspath{ {images/} }
+\raggedbottom	% 令页面在垂直方向向顶部对齐
+\renewcommand\qedsymbol{QED}
+\newcommand{\sign}[1]{\mathrm{sgn}(#1)}
+\everymath{\displaystyle}   % 行内公式采用行间公式格式排列
+\pagestyle{plain}
+
+\title{《计算机辅助几何设计》第十一次作业}
+\author{姓名：殷文良\qquad 学号：12435063}
+\date{\today}
+
+\begin{document}
+\maketitle
+\ctexset { section = { format={\Large \bfseries } } }
+
+\section*{1. 思考题}
+\subsection*{1.}
+\begin{proof}
+    双线性 Coons 曲面不一定位于其边界曲线的凸包内。\\
+    构造一个简单的双线性 Coons 曲面：
+    \begin{enumerate}
+        \item \textbf{角点坐标：}\\
+        $P(0,0) = (0,0,0), P(1, 0) = (1, 0, 0), P(0, 1) = (0, 1, 0), P(1, 1, 1) = (1, 1, -1)$；
+        \item \textbf{边界曲线：}\\
+        $P(0, v) = (0, v, 0)$，连接$P(0, 0)$和$P(0, 1)$；\\
+        $P(1, v) = (1, v, -v)$，连接$P(1, 0)$和$P(1, 1)$；\\
+        $P(u, 0) = (u, 0, 0)$，连接$P(0, 0)$和$P(1, 0)$；\\
+        $P(u, 1) = (u, 1, -u)$，连接$P(0, 1)$和$P(1, 1)$；
+    \end{enumerate}
+    角点$P(0,0),P(1,0),P(0,1),P(1,1)$形成一个带有凹陷的四边形区域，这种设置会生成一个双线性 Coons 曲面，
+    其中心区域由于插值的影响向下凹陷，导致靠近$P(1,1)$的曲面点落在边界曲线凸包的外部。
+\end{proof}
+
+\subsection*{2.}
+\begin{proof}
+    设曲面$P(u,v)$处处扭矢为0，则有$\frac{\partial^2 P(u,v)}{\partial u\partial v}\equiv 0$，对等式两边积分可得
+    $$
+    \frac{\partial P(u,v)}{\partial v} = C_0'(v).
+    $$
+    对上式两边进一步积分，有
+    $$
+    P(u,v) = C_1(u) + C_0(v) + C,
+    $$
+    其中，$\frac{d}{dv}C_0(v) = C_0'(v)$。不妨设$P(u,0) = C_1(u)$，从而有
+    $$
+    P(u,v) = C_1(u) + C_0(v) - C_0(0),
+    $$
+    即这是将曲线$C_1(u)$沿曲线$C_0(V)$平移得到的曲面。
+\end{proof}
+
+\subsection*{3.}
+\begin{proof}
+    根据双线性Coons曲面的定义，有
+    $$
+    \begin{aligned}
+    S(u,v) &= Q_1(u,v) + Q_2(u, v) - \Delta(u,v)\\
+    &= [P(0,v)(1-u) + P(1,v)u] + [P(u,0)(1-v)+P(u,1)v] \\
+    &\quad - [P(0,0)(1-u)(1-v)+P(1,0)u(1-v)+P(0,1)v(1-u)+P(1,1)uv],
+    \end{aligned}
+    $$
+    其中，$P(0,v),P(1,v),P(u,0),P(u,1)$均为三次曲线。\par
+    上式第一项是关于$v$的三次多项式，关于$u$的线性多项式；
+    第二项是关于$u$的三次多项式，关于$v$的线性多项式;第三项是关于$u,v$的双线性多项式。因此，
+    $S(u,v)$是关于$u,v$的双三次多项式，即$S(u,v)$是双三次曲面。
+\end{proof}
+
+
+\end{document}
