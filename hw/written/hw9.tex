@@ -44,7 +44,7 @@
         \renewcommand{\algorithmicensure}{\textbf{Output:}}
         \begin{algorithmic}[1]
             \REQUIRE $P,n,\quad u,v\in[0,1]$
-            \ENSURE $S = \sum_{j=0}^mB_{j,m}(v)\left ( \sum_{i=0}^nB_{i,n}(u)P_{i,j}\right )$
+            \ENSURE $S = \sum_{j=0}^nB_{j,n}(v)\left ( \sum_{i=0}^nB_{i,n}(u)P_{i,j}\right )$
 
             \FOR{$j=0:n$}
             \STATE $Q[j] = \text{deCasteljau}(P[j][], n, u);$
